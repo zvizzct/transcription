@@ -4,13 +4,12 @@ import os
 
 
 # Ask the user to enter the YouTube video URL
-video_url = input("Please enter the YouTube video URL to transcribe: ")
+video_url = input("Enter the YouTube video URL to transcribe: ")
 
 # check if audio.mp3 exists in the audio directory, and if it does, remove it
-
 if os.path.exists("audio/my_audio.mp3"):
     os.remove("audio/my_audio.mp3")
-    
+
 # Create results if not exist
 if not os.path.exists("results"):
     os.makedirs("results")
@@ -29,7 +28,7 @@ with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 
 
 # load the Whisper model and transcribe the audio file
-model = whisper.load_model("small")
+model = whisper.load_model("base")
 result = model.transcribe("audio/my_audio.mp3")
 
 # Use the video title as the file name when saving the result
